@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Away3dTerrainExample" package="com.sample.project" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="Away3dTerrainExample" />
+	
+	<source path="Source" />
+	
+	<haxelib name="away3d" />
+	<haxelib name="openfl" />
+
+	<haxeflag name="-swf-version" value="11.3" />
+
+	<assets path="Assets" rename="assets" />
+	<assets path="Assets/skybox/space" rename="assets/skybox/space" />
+	<assets path="Assets/water/water_normals.jpg" rename="assets/water/water_normals.jpg" />
+	<icon path="Assets/openfl.svg" />
+
+	<window width="1280" height="1024" fps="60" />
+
+</project>
