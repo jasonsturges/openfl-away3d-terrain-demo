@@ -34,7 +34,7 @@ Note that with the current production Away3D v1.1.0 from haxelib, you may receiv
 
 > /usr/lib/haxe/lib/away3d/1,1,0/away3d/utils/ArrayUtils.hx:76: characters 15-89 : Type not found : A
 
-Until the Away3D haxelib is updated, use the latest git repository by cloning the repo and use it as a dev haxelib:
+Until the Away3D haxelib is updated, use the latest git repository by cloning the repo for use as a development haxelib:
 
 	$ git clone https://github.com/away3d/away3d-core-openfl.git
 	$ haxelib dev away3d ./away3d-core-openfl
