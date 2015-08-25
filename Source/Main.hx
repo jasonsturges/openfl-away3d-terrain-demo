@@ -9,8 +9,10 @@
 */
 package;
 
+import openfl.display.BitmapData;
 import openfl.display.StageAlign;
 import openfl.display.StageScaleMode;
+
 import away3d.entities.Mesh;
 import away3d.extrusions.Elevation;
 import away3d.lights.DirectionalLight;
@@ -26,7 +28,6 @@ import away3d.textures.BitmapCubeTexture;
 import away3d.textures.BitmapTexture;
 import away3d.utils.Cast;
 
-import openfl.display.BitmapData;
 
 class Main extends Away3dFirstPersonViewport {
 

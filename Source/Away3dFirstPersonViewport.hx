@@ -10,10 +10,12 @@
 package;
 
 import openfl.events.Event;
+import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
 import openfl.ui.Keyboard;
-import openfl.events.KeyboardEvent;
+
 import away3d.controllers.FirstPersonController;
+
 
 class Away3dFirstPersonViewport extends Away3dViewport {
 

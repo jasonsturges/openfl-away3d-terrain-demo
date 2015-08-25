@@ -9,16 +9,18 @@
 */
 package;
 
+import openfl.display.Sprite;
 import openfl.display.StageDisplayState;
-import openfl.ui.Keyboard;
+import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
-import openfl.events.Event;
-import openfl.display.Sprite;
+import openfl.ui.Keyboard;
+
 import away3d.containers.View3D;
 import away3d.containers.Scene3D;
 import away3d.cameras.Camera3D;
 import away3d.debug.AwayStats;
+
 
 class Away3dViewport extends Sprite {
 
