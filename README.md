@@ -35,3 +35,14 @@ To run, call `openfl` with a target, such as:
 
     $ cd openfl-away3d-terrain-demo/
     $ openfl test flash
+
+And you end up with:
+
+<img src="http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg" />
+
+- Mouse down &mdash; move camera
+- <kbd>f</kbd> &mdash; Launch Full Screen
+- <kbd>w</kbd> or <kbd>Arrow Up</kbd> &mdash; forward
+- <kbd>s</kbd> or <kbd>Arrow Down</kbd> &mdash; backward
+- <kbd>a</kbd> or <kbd>Arrow Left</kbd> &mdash; left
+- <kbd>d</kbd> or <kbd>Arrow Right</kbd> &mdash; right
