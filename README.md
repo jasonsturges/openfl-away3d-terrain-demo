@@ -3,7 +3,7 @@
 
 # Getting started
 
-This is a [Haxe](http://haxe.org/) project, demonstrating a basic 3D terrain with water and skybox, build with OpenFL and Away3D.
+This is a [Haxe](http://haxe.org/) project, demonstrating a basic 3D terrain with water and skybox, built with [OpenFL](http://www.openfl.org/) and [Away3D](http://away3d.com/).
 
 ### Install Haxe
 
