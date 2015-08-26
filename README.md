@@ -49,7 +49,7 @@ To run, call `openfl` with a target, such as:
 
 And you end up with:
 
-<img src="http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg" />
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg)
 
 - Mouse down &mdash; move camera
 - <kbd>f</kbd> &mdash; Launch Full Screen
