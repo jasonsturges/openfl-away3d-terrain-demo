@@ -31,6 +31,10 @@ import away3d.utils.Cast;
 
 class Main extends Away3dFirstPersonViewport {
 
+//------------------------------
+//  model
+//------------------------------
+
     private var cubeTexture:BitmapCubeTexture;
     private var terrain:Elevation;
     private var terrainMaterial:TextureMaterial;
@@ -41,6 +45,11 @@ class Main extends Away3dFirstPersonViewport {
     private var sunLight:DirectionalLight;
     private var lightPicker:StaticLightPicker;
     private var fogMethod:FogMethod;
+
+
+//------------------------------
+//  lifecycle
+//------------------------------
 
     public function new() {
         super();
@@ -87,9 +96,12 @@ class Main extends Away3dFirstPersonViewport {
         terrainMaterial.specular = .2;
         terrainMaterial.addMethod(fogMethod);
 
-        waterMethod = new SimpleWaterNormalMethod(Cast.bitmapTexture("assets/water/water_normals.jpg"), Cast.bitmapTexture("assets/water/water_normals.jpg"));
         fresnelMethod = new FresnelSpecularMethod();
         fresnelMethod.normalReflectance = .3;
+
+        waterMethod = new SimpleWaterNormalMethod(
+            Cast.bitmapTexture("assets/water/water_normals.jpg"),
+            Cast.bitmapTexture("assets/water/water_normals.jpg"));
 
         waterMaterial = new TextureMaterial(new BitmapTexture(new BitmapData(512, 512, true, 0xaa404070)));
         waterMaterial.alphaBlending = true;
@@ -107,7 +119,8 @@ class Main extends Away3dFirstPersonViewport {
 
         scene.addChild(new SkyBox(cubeTexture));
 
-        terrain = new Elevation(terrainMaterial, Cast.bitmapData("assets/terrain/terrain-heightmap.png"), 5000, 1300, 5000, 250, 250);
+        terrain = new Elevation(terrainMaterial, Cast.bitmapData("assets/terrain/terrain-heightmap.png"),
+            5000, 1300, 5000, 250, 250);
         scene.addChild(terrain);
 
         plane = new Mesh(new PlaneGeometry(5000, 5000), waterMaterial);
