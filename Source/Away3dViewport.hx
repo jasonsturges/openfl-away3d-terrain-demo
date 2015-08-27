@@ -98,14 +98,18 @@ class Away3dViewport extends Sprite {
     }
 
     public function fullScreen(interactive:Bool = true):Void {
+        #if flash
         switch (interactive) {
             case true:
                 if (stage.allowsFullScreenInteractive)
                     stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
             case false:
+        #end
                 if (stage.allowsFullScreen)
                     stage.displayState = StageDisplayState.FULL_SCREEN;
+        #if flash
         }
+        #end
     }
 
     public function prerender():Void {
