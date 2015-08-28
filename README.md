@@ -53,13 +53,12 @@ To run, call `openfl` with a target, such as:
 
 And you end up with:
 
-##### Flash
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg)
-
 ##### html5
 _Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/_
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-html5-demo.jpg)
 
+##### Flash
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg)
 
 - Mouse down &mdash; move camera
 - <kbd>f</kbd> &mdash; Launch Full Screen
