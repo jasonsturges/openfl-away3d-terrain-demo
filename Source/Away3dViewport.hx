@@ -86,7 +86,7 @@ class Away3dViewport extends Sprite {
         stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 
         stage.addEventListener(Event.RESIZE, resizeHandler);
-        stage.addEventListener(Event.ENTER_FRAME, render);
+        view.setRenderCallback(render);
 
         addChild(view);
         addChild(awayStats);
@@ -130,7 +130,7 @@ class Away3dViewport extends Sprite {
         stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 
         stage.removeEventListener(Event.RESIZE, resizeHandler);
-        stage.removeEventListener(Event.ENTER_FRAME, render);
+        // TODO: Proper disposal of view view.setRenderCallback();
 
         removeChild(view);
         removeChild(awayStats);
