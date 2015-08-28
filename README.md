@@ -16,28 +16,32 @@ If this is your first time running haxelib, setup by executing the following com
 
     $ haxelib setup
 
-Install Lime:
+##### Install Lime
 
     $ haxelib install lime
     $ haxelib run lime setup
     
-Install OpenFL:
+##### Install OpenFL
 
     $ haxelib install openfl
     $ haxelib run openfl setup
     
-Install Away3D:
+##### Install Away3D
 
     $ haxelib install away3d
 
-Note that with the current production Away3D v1.1.0 from haxelib, you may receive an error from `ArrayUtils.hx` when running this example:
-
-> /usr/lib/haxe/lib/away3d/1,1,0/away3d/utils/ArrayUtils.hx:76: characters 15-89 : Type not found : A
+Note that with the current production Away3D v1.1.0 from haxelib is not compatible with this project. 
 
 Until the Away3D haxelib is updated, use the latest git repository by cloning the repo for use as a development haxelib:
 
-	$ git clone https://github.com/away3d/away3d-core-openfl.git
-	$ haxelib dev away3d ./away3d-core-openfl
+    $ git clone https://github.com/away3d/away3d-core-openfl.git
+    $ haxelib dev away3d ./away3d-core-openfl
+
+##### Troubleshooting
+
+For other compiler errors, make sure libraries are updated to the latest versions by calling:
+
+    $ haxelib upgrade
 
 
 # Building and running
@@ -49,7 +53,11 @@ To run, call `openfl` with a target, such as:
 
 And you end up with:
 
+##### Flash
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg)
+
+##### html5
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-html5-demo.jpg)
 
 - Mouse down &mdash; move camera
 - <kbd>f</kbd> &mdash; Launch Full Screen
