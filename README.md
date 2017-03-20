@@ -30,13 +30,6 @@ If this is your first time running haxelib, setup by executing the following com
 
     $ haxelib install away3d
 
-Note that with the current production Away3D v1.1.0 from haxelib is not compatible with this project. 
-
-Until the Away3D haxelib is updated, use the latest git repository by cloning the repo for use as a development haxelib:
-
-    $ git clone https://github.com/away3d/away3d-core-openfl.git
-    $ haxelib dev away3d ./away3d-core-openfl
-
 ##### Troubleshooting
 
 For other compiler errors, make sure libraries are updated to the latest versions by calling:
