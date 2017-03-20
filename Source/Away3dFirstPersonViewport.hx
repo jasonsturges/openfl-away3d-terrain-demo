@@ -95,9 +95,9 @@ class Away3dFirstPersonViewport extends Away3dViewport {
             case Keyboard.UP, Keyboard.W:
                 walkAcceleration = walkIncrement;
             case Keyboard.DOWN, Keyboard.S:
-                walkAcceleration = ~walkIncrement;
+                walkAcceleration = -1.0 * walkIncrement;
             case Keyboard.LEFT, Keyboard.A:
-                strafeAcceleration = ~strafeIncrement;
+                strafeAcceleration = -1.0 * strafeIncrement;
             case Keyboard.RIGHT, Keyboard.D:
                 strafeAcceleration = strafeIncrement;
         }
