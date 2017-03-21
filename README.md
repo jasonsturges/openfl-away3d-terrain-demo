@@ -2,7 +2,7 @@
 3D terrain demo using OpenFL, Away3D, and Haxe
 
 
-# Getting started
+## Getting started
 
 This is a [Haxe](http://haxe.org/) project, demonstrating a basic 3D terrain with water and skybox, built with [OpenFL](http://www.openfl.org/) and [Away3D](http://away3d.com/).
 
@@ -37,21 +37,14 @@ For other compiler errors, make sure libraries are updated to the latest version
     $ haxelib upgrade
 
 
-# Building and running
+## Building and running
 
-To run, call `openfl` with a target, such as:
+To run, call `openfl test` with a target, such as:
 
     $ cd openfl-away3d-terrain-demo/
-    $ openfl test flash
+    $ openfl test html5
 
 And you end up with:
-
-##### html5
-_Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/_
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-html5-demo.jpg)
-
-##### Flash
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo.jpg)
 
 - Mouse down &mdash; move camera
 - <kbd>f</kbd> &mdash; Launch Full Screen
@@ -59,3 +52,14 @@ _Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/htm
 - <kbd>s</kbd> or <kbd>Arrow Down</kbd> &mdash; backward
 - <kbd>a</kbd> or <kbd>Arrow Left</kbd> &mdash; left
 - <kbd>d</kbd> or <kbd>Arrow Right</kbd> &mdash; right
+
+### html5
+_Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/_
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-html5.png)
+
+### C++
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-cpp.png)
+
+### Flash
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-flash.png)
+
