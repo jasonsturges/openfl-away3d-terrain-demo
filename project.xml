@@ -19,7 +19,7 @@
 	<assets path="Assets/water/water_normals.jpg" rename="assets/water/water_normals.jpg" />
 	<icon path="Assets/openfl.svg" />
 
-	<window width="1024" height="700" if="desktop"/>
+	<window width="1280" height="720" if="desktop"/>
 	<window width="0" height="0" if="html5" />
 	<window orientation="landscape" vsync="true" if="cpp"/>
 	<window fps="60" hardware="true" allow-shaders="true" require-shaders="true" depth-buffer="true" stencil-buffer="true"  background="#000000"  />
