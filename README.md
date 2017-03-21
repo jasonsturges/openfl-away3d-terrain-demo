@@ -54,12 +54,13 @@ And you end up with:
 - <kbd>d</kbd> or <kbd>Arrow Right</kbd> &mdash; right
 
 ### html5
-_Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/_
+Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-html5.png)
 
 ### C++
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-cpp.png)
 
 ### Flash
+Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/flash/
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-flash.png)
 
