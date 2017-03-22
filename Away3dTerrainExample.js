@@ -15,7 +15,7 @@ $hxClasses["ApplicationMain"] = ApplicationMain;
 ApplicationMain.__name__ = ["ApplicationMain"];
 ApplicationMain.main = function() {
 	var projectName = "Away3dTerrainExample";
-	var config = { build : "22", company : "Company Name", file : "Away3dTerrainExample", fps : 60, name : "Away3dTerrainExample", orientation : "", packageName : "com.sample.project", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 0, borderless : false, depthBuffer : true, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : { }, resizable : true, stencilBuffer : true, title : "Away3dTerrainExample", vsync : false, width : 0, x : null, y : null}]};
+	var config = { build : "27", company : "Company Name", file : "Away3dTerrainExample", fps : 60, name : "Away3dTerrainExample", orientation : "", packageName : "com.sample.project", version : "1.0.0", windows : [{ allowHighDPI : false, antialiasing : 0, background : 0, borderless : false, depthBuffer : true, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : { }, resizable : true, stencilBuffer : true, title : "Away3dTerrainExample", vsync : false, width : 0, x : null, y : null}]};
 	lime_system_System.__registerEntryPoint(projectName,ApplicationMain.create,config);
 };
 ApplicationMain.create = function(config) {
@@ -32832,8 +32832,8 @@ lime__$backend_html5_HTML5GLRenderContext.prototype = {
 		this.__context.compileShader(shader);
 	}
 	,compressedTexImage2D: function(target,level,internalformat,width,height,border,imageSize,srcData,srcOffset,srcLengthOverride) {
-		srcData = this.__prepareData(null,srcData);
 		if(typeof(imageSize) == "number" && ((imageSize | 0) === imageSize)) {
+			srcData = this.__prepareData(null,srcData);
 			if(this.version > 1 && srcOffset != null) {
 				this.__context.compressedTexImage2D(target,level,internalformat,width,height,border,srcData,srcOffset,srcLengthOverride);
 			} else {
@@ -32849,8 +32849,8 @@ lime__$backend_html5_HTML5GLRenderContext.prototype = {
 		this.__context.compressedTexImage3D(target,level,internalformat,width,height,depth,border,srcData,srcOffset,srcLengthOverride);
 	}
 	,compressedTexSubImage2D: function(target,level,xoffset,yoffset,width,height,format,imageSize,srcData,srcOffset,srcLengthOverride) {
-		srcData = this.__prepareData(null,srcData);
 		if(typeof(imageSize) == "number" && ((imageSize | 0) === imageSize)) {
+			srcData = this.__prepareData(null,srcData);
 			if(this.version > 1 && srcOffset != null) {
 				this.__context.compressedTexSubImage2D(target,level,xoffset,yoffset,width,height,format,srcData,srcOffset,srcLengthOverride);
 			} else {
@@ -34290,6 +34290,9 @@ lime__$backend_html5_HTML5GLRenderContext.prototype = {
 					return null;
 				} else if(this.__isArrayBufferView(data)) {
 					var arrayBufferView = data;
+					if(arrayBufferView.byteLength == size) {
+						return data;
+					}
 					var buffer = arrayBufferView.buffer;
 					var byteoffset = arrayBufferView.byteOffset;
 					var this1;
@@ -34384,6 +34387,56 @@ var lime__$backend_html5_HTML5HTTPRequest = function() {
 };
 $hxClasses["lime._backend.html5.HTML5HTTPRequest"] = lime__$backend_html5_HTML5HTTPRequest;
 lime__$backend_html5_HTML5HTTPRequest.__name__ = ["lime","_backend","html5","HTML5HTTPRequest"];
+lime__$backend_html5_HTML5HTTPRequest.loadImage = function(uri) {
+	var promise = new lime_app_Promise();
+	if(lime__$backend_html5_HTML5HTTPRequest.activeRequests < lime__$backend_html5_HTML5HTTPRequest.requestLimit) {
+		lime__$backend_html5_HTML5HTTPRequest.activeRequests++;
+		lime__$backend_html5_HTML5HTTPRequest.__loadImage(uri,promise);
+	} else {
+		lime__$backend_html5_HTML5HTTPRequest.requestQueue.add({ instance : null, uri : uri, promise : promise, type : "IMAGE"});
+	}
+	return promise.future;
+};
+lime__$backend_html5_HTML5HTTPRequest.processQueue = function() {
+	if(lime__$backend_html5_HTML5HTTPRequest.activeRequests < lime__$backend_html5_HTML5HTTPRequest.requestLimit && lime__$backend_html5_HTML5HTTPRequest.requestQueue.length > 0) {
+		lime__$backend_html5_HTML5HTTPRequest.activeRequests++;
+		var queueItem = lime__$backend_html5_HTML5HTTPRequest.requestQueue.pop();
+		var _g = queueItem.type;
+		switch(_g) {
+		case "BINARY":
+			queueItem.instance.__loadData(queueItem.uri,queueItem.promise);
+			break;
+		case "IMAGE":
+			lime__$backend_html5_HTML5HTTPRequest.__loadImage(queueItem.uri,queueItem.promise);
+			break;
+		case "TEXT":
+			queueItem.instance.__loadText(queueItem.uri,queueItem.promise);
+			break;
+		default:
+			lime__$backend_html5_HTML5HTTPRequest.activeRequests--;
+		}
+	}
+};
+lime__$backend_html5_HTML5HTTPRequest.__loadImage = function(uri,promise) {
+	var image = new Image();
+	image.crossOrigin = "Anonymous";
+	image.addEventListener("load",function(event) {
+		var buffer = new lime_graphics_ImageBuffer(null,image.width,image.height);
+		buffer.__srcImage = image;
+		lime__$backend_html5_HTML5HTTPRequest.activeRequests--;
+		lime__$backend_html5_HTML5HTTPRequest.processQueue();
+		promise.complete(new lime_graphics_Image(buffer));
+	},false);
+	image.addEventListener("progress",function(event1) {
+		promise.progress(event1.loaded,event1.total);
+	},false);
+	image.addEventListener("error",function(event2) {
+		lime__$backend_html5_HTML5HTTPRequest.activeRequests--;
+		lime__$backend_html5_HTML5HTTPRequest.processQueue();
+		promise.error(event2.detail);
+	},false);
+	image.src = uri;
+};
 lime__$backend_html5_HTML5HTTPRequest.prototype = {
 	binary: null
 	,parent: null
@@ -34450,8 +34503,46 @@ lime__$backend_html5_HTML5HTTPRequest.prototype = {
 		}
 	}
 	,loadData: function(uri) {
-		var _gthis = this;
 		var promise = new lime_app_Promise();
+		if(lime__$backend_html5_HTML5HTTPRequest.activeRequests < lime__$backend_html5_HTML5HTTPRequest.requestLimit) {
+			lime__$backend_html5_HTML5HTTPRequest.activeRequests++;
+			this.__loadData(uri,promise);
+		} else {
+			lime__$backend_html5_HTML5HTTPRequest.requestQueue.add({ instance : this, uri : uri, promise : promise, type : "BINARY"});
+		}
+		return promise.future;
+	}
+	,loadText: function(uri) {
+		var promise = new lime_app_Promise();
+		if(lime__$backend_html5_HTML5HTTPRequest.activeRequests < lime__$backend_html5_HTML5HTTPRequest.requestLimit) {
+			lime__$backend_html5_HTML5HTTPRequest.activeRequests++;
+			this.__loadText(uri,promise);
+		} else {
+			lime__$backend_html5_HTML5HTTPRequest.requestQueue.add({ instance : this, uri : uri, promise : promise, type : "TEXT"});
+		}
+		return promise.future;
+	}
+	,processResponse: function() {
+		if(this.parent.enableResponseHeaders) {
+			this.parent.responseHeaders = [];
+			var name;
+			var value;
+			var _g = 0;
+			var _g1 = this.request.getAllResponseHeaders().split("\n");
+			while(_g < _g1.length) {
+				var line = _g1[_g];
+				++_g;
+				name = StringTools.trim(HxOverrides.substr(line,0,line.indexOf(":")));
+				value = StringTools.trim(HxOverrides.substr(line,line.indexOf(":") + 1,null));
+				if(name != "") {
+					this.parent.responseHeaders.push(new lime_net_HTTPRequestHeader(name,value));
+				}
+			}
+		}
+		this.parent.responseStatus = this.request.status;
+	}
+	,__loadData: function(uri,promise) {
+		var _gthis = this;
 		var progress = function(event) {
 			promise.progress(event.loaded,event.total);
 		};
@@ -34473,14 +34564,14 @@ lime__$backend_html5_HTML5HTTPRequest.prototype = {
 				promise.error(_gthis.request.status);
 			}
 			_gthis.request = null;
+			lime__$backend_html5_HTML5HTTPRequest.activeRequests--;
+			lime__$backend_html5_HTML5HTTPRequest.processQueue();
 		};
 		this.binary = true;
 		this.load(uri,progress,readyStateChange);
-		return promise.future;
 	}
-	,loadText: function(uri) {
+	,__loadText: function(uri,promise) {
 		var _gthis = this;
-		var promise = new lime_app_Promise();
 		var progress = function(event) {
 			promise.progress(event.loaded,event.total);
 		};
@@ -34496,29 +34587,11 @@ lime__$backend_html5_HTML5HTTPRequest.prototype = {
 				promise.error(_gthis.request.status);
 			}
 			_gthis.request = null;
+			lime__$backend_html5_HTML5HTTPRequest.activeRequests--;
+			lime__$backend_html5_HTML5HTTPRequest.processQueue();
 		};
 		this.binary = false;
 		this.load(uri,progress,readyStateChange);
-		return promise.future;
-	}
-	,processResponse: function() {
-		if(this.parent.enableResponseHeaders) {
-			this.parent.responseHeaders = [];
-			var name;
-			var value;
-			var _g = 0;
-			var _g1 = this.request.getAllResponseHeaders().split("\n");
-			while(_g < _g1.length) {
-				var line = _g1[_g];
-				++_g;
-				name = StringTools.trim(HxOverrides.substr(line,0,line.indexOf(":")));
-				value = StringTools.trim(HxOverrides.substr(line,line.indexOf(":") + 1,null));
-				if(name != "") {
-					this.parent.responseHeaders.push(new lime_net_HTTPRequestHeader(name,value));
-				}
-			}
-		}
-		this.parent.responseStatus = this.request.status;
 	}
 	,__class__: lime__$backend_html5_HTML5HTTPRequest
 };
@@ -38028,21 +38101,7 @@ lime_graphics_Image.loadFromBase64 = function(base64,type) {
 	if(base64 == null || type == null) {
 		return lime_app_Future.withValue(null);
 	}
-	var promise = new lime_app_Promise();
-	var image = new Image();
-	image.addEventListener("load",function(event) {
-		var buffer = new lime_graphics_ImageBuffer(null,image.width,image.height);
-		buffer.__srcImage = image;
-		promise.complete(new lime_graphics_Image(buffer));
-	},false);
-	image.addEventListener("progress",function(event1) {
-		promise.progress(event1.loaded,event1.total);
-	},false);
-	image.addEventListener("error",function(event2) {
-		promise.error(event2.detail);
-	},false);
-	image.src = "data:" + type + ";base64," + base64;
-	return promise.future;
+	return lime__$backend_html5_HTML5HTTPRequest.loadImage("data:" + type + ";base64," + base64);
 };
 lime_graphics_Image.loadFromBytes = function(bytes) {
 	if(bytes == null) {
@@ -38064,22 +38123,7 @@ lime_graphics_Image.loadFromFile = function(path) {
 	if(path == null) {
 		return lime_app_Future.withValue(null);
 	}
-	var promise = new lime_app_Promise();
-	var image = new Image();
-	image.crossOrigin = "Anonymous";
-	image.addEventListener("load",function(event) {
-		var buffer = new lime_graphics_ImageBuffer(null,image.width,image.height);
-		buffer.__srcImage = image;
-		promise.complete(new lime_graphics_Image(buffer));
-	},false);
-	image.addEventListener("progress",function(event1) {
-		promise.progress(event1.loaded,event1.total);
-	},false);
-	image.addEventListener("error",function(event2) {
-		promise.error(event2.detail);
-	},false);
-	image.src = path;
-	return promise.future;
+	return lime__$backend_html5_HTML5HTTPRequest.loadImage(path);
 };
 lime_graphics_Image.__base64Encode = function(bytes) {
 	var extension;
@@ -48007,7 +48051,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 498689;
+	this.version = 52629;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = ["lime","utils","AssetCache"];
@@ -84091,6 +84135,9 @@ js_Boot.__toStr = ({ }).toString;
 js_html_compat_Float32Array.BYTES_PER_ELEMENT = 4;
 js_html_compat_Float64Array.BYTES_PER_ELEMENT = 8;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
+lime__$backend_html5_HTML5HTTPRequest.activeRequests = 0;
+lime__$backend_html5_HTML5HTTPRequest.requestLimit = 4;
+lime__$backend_html5_HTML5HTTPRequest.requestQueue = new List();
 lime__$backend_html5_HTML5Window.dummyCharacter = "";
 lime__$backend_html5_HTML5Window.windowID = 0;
 lime_graphics_Image.__base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
