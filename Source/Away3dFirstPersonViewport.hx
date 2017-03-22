@@ -154,5 +154,4 @@ class Away3dFirstPersonViewport extends Away3dViewport {
         cameraController = null;
     }
 
-
 }
