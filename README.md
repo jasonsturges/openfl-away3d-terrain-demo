@@ -1,6 +1,16 @@
 # OpenFL Away3D Terrain Demo
 3D terrain demo using OpenFL, Away3D, and Haxe
 
+Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/
+![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-html5.png)
+
+- Mouse down &mdash; move camera
+- <kbd>f</kbd> &mdash; Launch Full Screen
+- <kbd>w</kbd> or <kbd>Arrow Up</kbd> &mdash; forward
+- <kbd>s</kbd> or <kbd>Arrow Down</kbd> &mdash; backward
+- <kbd>a</kbd> or <kbd>Arrow Left</kbd> &mdash; left
+- <kbd>d</kbd> or <kbd>Arrow Right</kbd> &mdash; right
+
 
 ## Getting started
 
@@ -43,26 +53,6 @@ To run, call `openfl test` with a target, such as:
 
     $ cd openfl-away3d-terrain-demo/
     $ openfl test html5
-
-And you end up with:
-
-- Mouse down &mdash; move camera
-- <kbd>f</kbd> &mdash; Launch Full Screen
-- <kbd>w</kbd> or <kbd>Arrow Up</kbd> &mdash; forward
-- <kbd>s</kbd> or <kbd>Arrow Down</kbd> &mdash; backward
-- <kbd>a</kbd> or <kbd>Arrow Left</kbd> &mdash; left
-- <kbd>d</kbd> or <kbd>Arrow Right</kbd> &mdash; right
-
-### html5
-Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html5/
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-html5.png)
-
-### C++
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-cpp.png)
-
-### Flash
-Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/flash/
-![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-flash.png)
 
 
 ## License
