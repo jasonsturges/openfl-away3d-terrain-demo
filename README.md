@@ -64,3 +64,9 @@ Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/html
 Launch demo: http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/flash/
 ![screen-capture](http://labs.jasonsturges.com/openfl/openfl-away3d-terrain-demo/openfl-away3d-terrain-demo-flash.png)
 
+
+## License
+
+This project is free, open-source software under the [MIT license](LICENSE.md).
+
+Copyright 2015-2017 [Jason Sturges](http://jasonsturges.com)
