@@ -58,10 +58,12 @@ class Away3dViewport extends Sprite {
     public function initializeEngine():Void {
         view = new View3D();
         view.antiAlias = antiAlias;
+        addChild(view);
 
         scene = view.scene;
 
         awayStats = new AwayStats(view);
+        addChild(awayStats);
     }
 
     public function initializeCamera():Void {
@@ -87,9 +89,6 @@ class Away3dViewport extends Sprite {
 
         stage.addEventListener(Event.RESIZE, resizeHandler);
         stage.addEventListener(Event.FRAME_CONSTRUCTED, render);
-
-        addChild(view);
-        addChild(awayStats);
     }
 
     public function resizeHandler(event:Event):Void {
