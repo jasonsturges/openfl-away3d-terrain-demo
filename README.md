@@ -26,25 +26,19 @@ If this is your first time running haxelib, setup by executing the following com
 
     $ haxelib setup
 
-##### Install Lime
+#### Install Lime
 
     $ haxelib install lime
     $ haxelib run lime setup
     
-##### Install OpenFL
+#### Install OpenFL
 
     $ haxelib install openfl
     $ haxelib run openfl setup
     
-##### Install Away3D
+#### Install Away3D
 
     $ haxelib install away3d
-
-##### Troubleshooting
-
-For other compiler errors, make sure libraries are updated to the latest versions by calling:
-
-    $ haxelib upgrade
 
 
 ## Building and running
@@ -53,6 +47,13 @@ To run, call `openfl test` with a target, such as:
 
     $ cd openfl-away3d-terrain-demo/
     $ openfl test html5
+
+
+## Troubleshooting
+
+For other compiler errors, make sure libraries are updated to the latest versions by calling:
+
+    $ haxelib upgrade
 
 
 ## License
