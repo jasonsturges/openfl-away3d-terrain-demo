@@ -1,7 +1,7 @@
 # OpenFL Away3D Terrain Demo
 3D terrain demo using OpenFL, Away3D, and Haxe
 
-Launch demo: http://labs.jasonsturges.com/haxe/openfl/away3d/terrain-demo/
+Launch demo: https://jasonsturges.github.io/openfl-away3d-terrain-demo/
 ![screen-capture](http://labs.jasonsturges.com/haxe/openfl/away3d/terrain-demo/screenshot.png)
 
 - Mouse down &mdash; move camera
