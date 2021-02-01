@@ -3,7 +3,7 @@
 
 ![screen-capture](https://user-images.githubusercontent.com/1213591/106400341-68171000-63e3-11eb-8d20-d5ea456152dc.png)
 
-YouTube Demo:
+YouTube:
 https://youtu.be/xr2_u2pRKF4
 
 Web Demo:
